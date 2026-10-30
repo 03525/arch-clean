@@ -1,0 +1,2 @@
+# Number of minutes before the sudo password prompt times out, or 0 for no timeout.
+Defaults passwd_timeout=0

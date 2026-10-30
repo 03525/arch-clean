@@ -1,0 +1,253 @@
+#!/bin/bash
+
+#
+# A pre-configured Arch Linux installer.
+#
+
+exec 3> /tmp/xtrace.log
+BASH_XTRACEFD=3
+set -o xtrace -o errexit -o pipefail
+
+atexit () {
+    set +o xtrace
+    unset BASH_XTRACEFD
+    exec 3>&-
+}
+
+trap atexit EXIT
+
+linger () {
+    for unit
+    do
+        echo "Waiting for $unit to complete..."
+
+        case $unit in
+            *.timer)
+                while [[ -z $(systemctl --no-pager --value --property=ActiveEnterTimestamp show "$unit") ]]
+                do
+                    sleep 1
+                done
+                ;;
+            *.service)
+                while [[ ! $(systemctl --no-pager --value --property=SubState show "$unit") =~ ^(dead|exited)$ ]]
+                do
+                    sleep 1
+                done
+                ;;
+        esac
+    done
+}
+
+if [[ ! -d /sys/firmware/efi ]]
+then
+    echo "System is not booted in UEFI mode."
+    exit 1
+fi
+
+if [[ ! -f packages ]]
+then
+    echo "packages file not found."
+    exit 1
+else
+    mapfile -t packages < packages
+fi
+
+if (( $# != 1 ))
+then
+    echo "Usage: $0 USERNAME"
+    exit 1
+fi
+
+if [[ ! $1 =~ ^[abcdefghijklmnopqrstuvwxyz]{2,32}$ ]]
+then
+    echo "Login entry is invalid."
+    exit 1
+else
+    username=$1
+fi
+
+pass_user=$(systemd-ask-password --timeout=0 --echo=yes --emoji=no "Enter a password (user)")
+pass_root=$(systemd-ask-password --timeout=0 --echo=yes --emoji=no "Enter a password (root)")
+
+if [[ -z $pass_user || -z $pass_root ]]
+then
+    echo "Empty passwords are not allowed."
+    exit 1
+fi
+
+lsblk
+
+select block in $(lsblk -dnp -o NAME -Q 'RO == 0 && TYPE == "disk"')
+do
+    if [[ -b $block ]]
+    then
+        break
+    fi
+done || exit 1
+
+select kernel in linux linux-hardened linux-lts linux-rt linux-rt-lts linux-zen
+do
+    if [[ -n $kernel ]]
+    then
+        packages+=("$kernel")
+        packages+=("$kernel"-headers)
+        break
+    fi
+done || exit 1
+
+echo "Starting sanity checks..."
+
+while [[ $(timedatectl --no-pager --value --property=NTPSynchronized show) != yes ]]
+do
+    sleep 1
+done
+
+linger reflector.service archlinux-keyring-wkd-sync.timer archlinux-keyring-wkd-sync.service
+
+# Destroy the GPT and MBR data structures
+sgdisk -Z "$block"
+
+# Manipulate disk partition table
+sfdisk -w always -W always "$block" << EOF
+label: gpt
+unit: sectors
+
+type=U,start=,size=1GiB
+type=S,start=,size=8GiB
+type=L,start=,size=
+EOF
+
+# Inform the operating system kernel of partition table changes
+partprobe "$block"
+
+# Wait for all events to finish
+udevadm settle
+
+# Dump the partitions of a device in JSON format
+partitions=$(sfdisk -J "$block")
+
+U=$(jq -r '.partitiontable.partitions[] | select(.type == "C12A7328-F81F-11D2-BA4B-00A0C93EC93B") | .node' <<< "$partitions")
+S=$(jq -r '.partitiontable.partitions[] | select(.type == "0657FD6D-A4AB-43C4-84E5-0933C84B4F4F") | .node' <<< "$partitions")
+L=$(jq -r '.partitiontable.partitions[] | select(.type == "0FC63DAF-8483-4772-8E79-3D69D8477DE4") | .node' <<< "$partitions")
+
+mkfs.ext4 "$L" -F
+mkfs.vfat "$U" -F 32
+
+mount -m -t ext4 "$L" /mnt
+mount -m -t vfat "$U" /mnt/boot -o fmask=0137,dmask=0027
+
+mkswap "$S"
+swapon "$S"
+
+for device in /sys/bus/pci/devices/*
+do
+    if [[ $(< "$device"/class) == 0x03* ]]
+    then
+        case $(< "$device"/vendor) in
+            0x1002)
+                # Advanced Micro Devices, Inc. [AMD/ATI]
+                packages+=(mesa)
+                packages+=(vulkan-radeon)
+                packages+=(xf86-video-amdgpu)
+                ;;
+            0x10de)
+                # NVIDIA Corporation
+                packages+=(dkms)
+                packages+=(nvidia-open-dkms)
+                packages+=(libva-nvidia-driver)
+                ;;
+            0x15ad)
+                # VMware
+                packages+=(mesa)
+                ;;
+            0x8086)
+                # Intel Corporation
+                packages+=(mesa)
+                packages+=(libvpl)
+                packages+=(vpl-gpu-rt)
+                packages+=(vulkan-intel)
+                packages+=(intel-media-driver)
+                packages+=(libva-intel-driver)
+                ;;
+        esac
+    fi
+done
+
+for module in /sys/module/*
+do
+    if [[ -f $module/refcnt ]]
+    then
+        case ${module##*/} in
+            snd_sof)
+                packages+=(sof-firmware)
+                ;;
+        esac
+    fi
+done
+
+if < /proc/cpuinfo grep AuthenticAMD
+then
+    packages+=(amd-ucode)
+fi
+
+if < /proc/cpuinfo grep GenuineIntel
+then
+    packages+=(intel-ucode)
+fi
+
+while ! pacstrap -K /mnt base linux-firmware "${packages[@]}"
+do
+    if ! read -r
+    then
+        exit 1
+    fi
+done
+
+# Generate an fstab file
+genfstab -U /mnt > /mnt/etc/fstab
+
+mount -m -o bind .dotfiles /mnt/etc/skel
+
+# Create a new user
+useradd --root=/mnt -m -s /usr/bin/zsh -G wheel "$username"
+
+# Change user password (user)
+echo "$pass_user" | passwd --root=/mnt -s "$username"
+
+# Change user password (root)
+echo "$pass_root" | passwd --root=/mnt -s
+
+# Mask units
+systemctl --root=/mnt mask ctrl-alt-del.target debug-shell.service
+
+# Enable units
+systemctl --root=/mnt enable fstrim.timer NetworkManager.service reflector.timer systemd-timesyncd.service ufw.service
+
+# Install systemd-boot into the EFI system partition
+bootctl --esp-path=/mnt/boot install
+
+# Adding loaders
+cat << EOF > /mnt/boot/loader/entries/arch.conf
+title Arch Linux
+linux /vmlinuz-$kernel
+initrd /initramfs-$kernel.img
+options root=UUID=$(findmnt -n -o UUID -T /mnt) rw
+EOF
+
+cp -r -- */ /mnt
+
+arch-chroot -S /mnt bash << 'EOF'
+# Set the Hardware Clock from the System Clock
+hwclock -w
+
+# Generate localization files from templates
+locale-gen
+
+# Generate initramfs images based on all existing presets
+mkinitcpio -P
+
+# ufw
+ufw default deny incoming
+ufw default allow outgoing
+ufw enable
+EOF

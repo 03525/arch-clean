@@ -1,0 +1,13 @@
+[Default Applications]
+application/gzip=xarchiver.desktop;
+application/pdf=firefox.desktop;
+application/vnd.rar=xarchiver.desktop;
+application/x-7z-compressed=xarchiver.desktop;
+application/x-bzip2=xarchiver.desktop;
+application/x-tar=xarchiver.desktop;
+application/zip=xarchiver.desktop;
+audio/mpeg=mpv.desktop;
+audio/x-vorbis+ogg=mpv.desktop;
+inode/directory=thunar.desktop;
+video/matroska=mpv.desktop;
+video/mp4=mpv.desktop;

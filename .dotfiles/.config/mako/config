@@ -1,0 +1,113 @@
+# Set maximum number of expired notifications to keep in the history buffer to n.
+max-history=0
+
+# Sort incoming notifications by time or priority in ascending or descending order.
+sort=+time
+
+# Perform the action when the left pointer button is pressed.
+# on-button-left=invoke-default-action
+
+# Perform the action when the middle pointer button is pressed.
+# on-button-middle=none
+
+# Perform the action when the right pointer button is pressed.
+# on-button-right=dismiss
+
+# Perform the action when tabbed via a touch device.
+# on-touch=dismiss
+
+# Perform the action when the notification is opened.
+# on-notify=none
+
+# Set font to font.
+font=Noto Sans Mono 10
+
+# Set background color to color.
+background-color=#000000FF
+
+# Set text color to color.
+text-color=#F5F5DCFF
+
+# Set width of notification popups.
+# width=300
+
+# Set maximum height of notification popups.
+height=300
+
+# Set outer-margin of each edge to the size specified by directional.
+# outer-margin=0
+
+# Set margin of each edge to the size specified by directional.
+margin=0
+
+# Set padding on each side to the size specified by directional.
+padding=10
+
+# Set popup border size to px pixels.
+border-size=5
+
+# Set popup border color to color.
+border-color=#2F4F4FFF
+
+# Set popup corner radius on each side to the size specified by directional.
+# border-radius=0
+
+# Set popup progress indicator color to color.
+progress-color=over #333333FF
+
+# Show icons in notifications.
+# icons=1
+
+# Set maximum icon size to px pixels.
+max-icon-size=32
+
+# Paths to search for icons when a notification specifies a name instead of a full path.
+icon-path=/usr/share/icons/Papirus-Dark:/usr/share/icons/Papirus
+
+# Position of the icon relative to the displayed text.
+# icon-location=left
+
+# Set icon corner radius to px pixels.
+# icon-border-radius=0
+
+# If 1, enable Pango markup.
+# markup=1
+
+# Disabling this will cause mako to ignore application requests.
+# actions=1
+
+# If set, mako will save notifications that have reached their timeout into the history buffer.
+history=0
+
+# Set notification format string to format.
+# format=<b>%s</b>\n%b
+
+# Set notification text alignment.
+# text-alignment=left
+
+# Set the default timeout to timeout in milliseconds.
+# default-timeout=0
+
+# If set, mako will ignore the expire timeout sent by notifications.
+ignore-timeout=1
+
+# All listed criteria must be exactly equal for two notifications to group.
+# group-by=none
+
+# Set maximum number of visible notifications to n.
+max-visible=-1
+
+# If empty, notifications will appear on the focused output.
+# output=
+
+# Arrange mako at the specified layer.
+layer=overlay
+
+# Show notifications at the specified position on the output.
+anchor=bottom-right
+
+[urgency=low]
+default-timeout=3000
+
+[urgency=critical]
+border-color=#FF0000FF

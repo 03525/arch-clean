@@ -1,0 +1,50 @@
+#!/bin/bash
+
+menu () {
+    options=(
+        -b
+        -i
+        -f "JetBrains Mono NL Bold 10"
+        -N 2F4F4FFF
+        -n 000000FF
+        -S 000000FF
+        -s F5F5DCFF
+    )
+
+    pgrep -x wmenu-run || wmenu-run "${options[@]}"
+}
+
+reborn () {
+    declare -A autostart=(
+        [gammastep]="gammastep -P -m wayland"
+        [kanshi]="kanshi"
+        [mako]="mako"
+        [swayidle]="swayidle -w"
+    )
+
+    for name in "${!autostart[@]}"
+    do
+        pkill -x "$name"
+        pidwait -x "$name"
+        swaymsg exec "${autostart[$name]}"
+    done
+}
+
+volume () {
+    case $1 in
+        t)
+            pamixer -t
+            ;;
+        d)
+            pamixer -d "${2:-10}" --allow-boost --set-limit=150
+            ;;
+        i)
+            pamixer -i "${2:-10}" --allow-boost --set-limit=150
+            ;;
+    esac
+
+    pamixer --get-volume-human
+    pamixer --get-volume
+}
+
+$1 "${@:2}"

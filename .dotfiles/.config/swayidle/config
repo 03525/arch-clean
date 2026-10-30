@@ -1,0 +1,5 @@
+# Execute the command before systemd puts the computer to sleep.
+before-sleep swaylock
+
+# Execute the command when logind signals that the session should be locked.
+lock swaylock

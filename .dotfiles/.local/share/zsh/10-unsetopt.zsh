@@ -1,0 +1,32 @@
+# If this option is not set, the shell will report an error when an append redirection is used on a file that does not already exists.
+unsetopt APPEND_CREATE
+
+# If a command is issued that can't be executed as a normal command, and the command is the name of a directory, perform the cd command to that directory.
+unsetopt AUTO_CD
+
+# When the last character resulting from a completion is a slash and the next character typed is a slash, remove the slash.
+unsetopt AUTO_REMOVE_SLASH
+
+# Perform textual history expansion, csh-style, treating the character "!" specially.
+unsetopt BANG_HIST
+
+# Allows ">" redirection to truncate existing files. Otherwise ">!" or ">|" must be used to truncate a file.
+unsetopt CLOBBER
+
+# Treat the "#", "~" and "^" characters as part of patterns for filename generation, etc.
+unsetopt EXTENDED_GLOB
+
+# If this option is unset, output flow control via start/stop characters is disabled in the shell's editor.
+unsetopt FLOW_CONTROL
+
+# Allow comments even in interactive shells.
+unsetopt INTERACTIVE_COMMENTS
+
+# On an ambiguous completion, instead of listing possibilities or beeping, insert the first match immediately.
+unsetopt MENU_COMPLETE
+
+# Allow the character sequence "''" to signify a single quote within singly quoted strings.
+unsetopt RC_QUOTES
+
+# Use single-line command line editing instead of multi-line.
+unsetopt SINGLE_LINE_ZLE

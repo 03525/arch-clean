@@ -1,0 +1,121 @@
+# Specifies the color used for a symbolic link.
+LINK target
+
+# Specifies the color used for a regular file with capability.
+CAPABILITY 0
+
+# Specifies the color used for a door.
+DOOR 0
+
+# Specifies the color used for a regular file.
+FILE 0
+
+# Specifies the color used for a missing file.
+MISSING 0
+
+# Specifies the color used for normal text.
+NORMAL 0
+
+# Specifies the color used for directories.
+DIR 38;5;30
+
+# Specifies the color used for a block device special file.
+BLK 38;5;68
+
+# Specifies the color used for a character device special file.
+CHR 38;5;113
+
+# Specifies the color used for an orphaned symbolic link.
+ORPHAN 38;5;124
+
+# Specifies the color used for a named pipe.
+FIFO 38;5;126
+
+# Specifies the color used for a socket.
+SOCK 38;5;197
+
+# Specifies the color used for a file with the executable attribute set.
+EXEC 38;5;202
+
+# Specifies the color used for a regular file with more than one link.
+MULTIHARDLINK 38;5;216
+
+# Specifies the color used for an other-writable directory without the executable attribute set.
+OTHER_WRITABLE 38;5;220;100
+
+# Specifies the color used for a file with the set-group-ID attribute set.
+SETGID 38;5;220;100
+
+# Specifies the color used for a file with the set-user-ID attribute set.
+SETUID 38;5;220;100
+
+# Specifies the color used for a directory with the sticky attribute set.
+STICKY 38;5;220;100
+
+# Specifies the color used for an other-writable directory with the executable attribute set.
+STICKY_OTHER_WRITABLE 38;5;220;100
+
+# 00D700
+*.7z 38;5;40
+*.bz2 38;5;40
+*.gz 38;5;40
+*.rar 38;5;40
+*.tar 38;5;40
+*.zip 38;5;40
+
+# 00D75F
+*.go 38;5;41
+*.py 38;5;41
+
+# 5FD7FF
+*.c 38;5;81
+*.cc 38;5;81
+*.cpp 38;5;81
+
+# 875FAF
+*.gif 38;5;97
+*.jpeg 38;5;97
+*.jpg 38;5;97
+*.png 38;5;97
+*.svg 38;5;97
+
+# 8787D7
+*.iso 38;5;104
+*.vdi 38;5;104
+
+# 8787FF
+*.js 38;5;105
+*.php 38;5;105
+
+# 87D787
+*.mkv 38;5;114
+*.mp4 38;5;114
+
+# AF005F
+*.css 38;5;125
+*.html 38;5;125
+
+# AF875F
+*.mp3 38;5;137
+*.ogg 38;5;137
+
+# D78700
+*.sh 38;5;172
+*.zsh 38;5;172
+
+# D7AF00
+*.csv 38;5;178
+*.json 38;5;178
+*.kdl 38;5;178
+*.toml 38;5;178
+*.xml 38;5;178
+*.yml 38;5;178
+
+# D7D700
+*.markdown 38;5;184
+*.md 38;5;184
+
+# D7FF87
+*id_ecdsa 38;5;192
+*id_ed25519 38;5;192
+*id_rsa 38;5;192

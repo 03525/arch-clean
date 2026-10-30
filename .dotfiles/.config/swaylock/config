@@ -1,0 +1,98 @@
+# When an empty password is provided, do not validate it.
+ignore-empty-password
+
+# Detach from the controlling terminal after locking.
+daemonize
+
+# Display the current xkb layout while typing.
+show-keyboard-layout
+
+# Show the current Caps Lock state also on the indicator.
+indicator-caps-lock
+
+# Turn the screen into the given color.
+color=000000FF
+
+# Set the color of the backspace highlight segments.
+bs-hl-color=006666FF
+
+# Set the color of the backspace highlight segments when Caps Lock is active.
+caps-lock-bs-hl-color=006666FF
+
+# Set the color of the key press highlight segments.
+key-hl-color=006666FF
+
+# Set the color of the key press highlight segments when Caps Lock is active.
+caps-lock-key-hl-color=006666FF
+
+# Set the font of the text.
+font=JetBrains Mono NL
+
+# Set a fixed font size for the indicator text.
+font-size=24
+
+# Set the indicator radius.
+indicator-radius=100
+
+# Set the indicator thickness.
+indicator-thickness=10
+
+# Set the color of the inside of the indicator.
+inside-color=000000FF
+
+# Set the color of the inside of the indicator when cleared.
+inside-clear-color=000000FF
+
+# Set the color of the inside of the indicator when Caps Lock is active.
+inside-caps-lock-color=000000FF
+
+# Set the color of the inside of the indicator when verifying.
+inside-ver-color=000000FF
+
+# Set the color of the inside of the indicator when invalid.
+inside-wrong-color=000000FF
+
+# Set the background color of the box containing the layout text.
+layout-bg-color=000000FF
+
+# Set the color of the border of the box containing the layout text.
+layout-border-color=000000FF
+
+# Set the color of the layout text.
+layout-text-color=F5F5DCFF
+
+# Use the inside color for the line between the inside and ring.
+line-uses-inside
+
+# Set the color of the ring of the indicator when typing or idle.
+ring-color=2F4F4FFF
+
+# Set the color of the ring of the indicator when cleared.
+ring-clear-color=2F4F4FFF
+
+# Set the color of the ring of the indicator when Caps Lock is active.
+ring-caps-lock-color=2F4F4FFF
+
+# Set the color of the ring of the indicator when verifying.
+ring-ver-color=2F4F4FFF
+
+# Set the color of the ring of the indicator when invalid.
+ring-wrong-color=2F4F4FFF
+
+# Set the color of the lines that separate highlight segments.
+separator-color=000000FF
+
+# Set the color of the text.
+text-color=F5F5DCFF
+
+# Set the color of the text when cleared.
+text-clear-color=F5F5DCFF
+
+# Set the color of the text when Caps Lock is active.
+text-caps-lock-color=F5F5DCFF
+
+# Set the color of the text when verifying.
+text-ver-color=F5F5DCFF
+
+# Set the color of the text when invalid.
+text-wrong-color=F5F5DCFF
