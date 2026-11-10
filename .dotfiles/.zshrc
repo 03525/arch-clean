@@ -2,10 +2,10 @@
 fpath=("$XDG_DATA_HOME"/zsh/functions "${fpath[@]}")
 
 # Customize how the end of partial lines are shown.
-PROMPT_EOL_MARK=$'%S\x20%s'
+PROMPT_EOL_MARK=$'%S %s'
 
 # The primary prompt string, printed before a command is read.
-PS1=$'%~%#\x20'
+PS1=$'%~%# '
 
 # A list of non-alphanumeric characters considered part of a word by the line editor.
 WORDCHARS=
