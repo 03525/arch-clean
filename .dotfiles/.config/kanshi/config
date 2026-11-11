@@ -1,3 +1,3 @@
 profile {
-    output "Microstep MSI MP242C PB0M013201798" enable mode 1920x1080@60.000Hz position 0,0 scale 1
+    output "Microstep MSI MP242C PB0M013201798" enable mode 1920x1080@60.000Hz position 0,0 scale 1 transform normal adaptive_sync off
 }
