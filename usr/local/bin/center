@@ -14,6 +14,17 @@ menu () {
     pgrep -x wmenu-run || wmenu-run "${options[@]}"
 }
 
+mike () {
+    case $1 in
+        t)
+            pamixer --default-source -t
+            ;;
+    esac
+
+    pamixer --default-source --get-volume-human
+    pamixer --default-source --get-volume
+}
+
 reborn () {
     declare -A autostart=(
         [gammastep]="gammastep -P -m wayland"
