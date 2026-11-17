@@ -228,7 +228,7 @@ bootctl --esp-path=/mnt/boot install
 
 # Adding loaders
 cat << EOF > /mnt/boot/loader/entries/arch.conf
-title Arch Linux, with Linux linux
+title Arch Linux, with Linux $kernel
 sort-key 01
 linux /vmlinuz-$kernel
 initrd /initramfs-$kernel.img
