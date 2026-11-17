@@ -228,7 +228,8 @@ bootctl --esp-path=/mnt/boot install
 
 # Adding loaders
 cat << EOF > /mnt/boot/loader/entries/arch.conf
-title Arch Linux
+title Arch Linux, with Linux linux
+sort-key 01
 linux /vmlinuz-$kernel
 initrd /initramfs-$kernel.img
 options root=UUID=$(findmnt -n -o UUID -T /mnt) rw zswap.enabled=1 usbcore.autosuspend=-1
