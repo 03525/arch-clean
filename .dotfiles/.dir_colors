@@ -26,7 +26,7 @@ BLK 38;5;68
 CHR 38;5;113
 
 # Specifies the color used for an orphaned symbolic link.
-ORPHAN 38;5;124
+ORPHAN 38;5;124;1
 
 # Specifies the color used for a named pipe.
 FIFO 38;5;126
