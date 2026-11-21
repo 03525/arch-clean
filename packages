@@ -4,6 +4,8 @@ breeze-gtk
 firefox
 flameshot
 gammastep
+gtk3
+gtk4
 gvfs
 iptables
 kanshi
@@ -26,6 +28,7 @@ openssh
 openvpn
 pamixer
 papirus-icon-theme
+pavucontrol
 pipewire
 pipewire-alsa
 pipewire-jack
