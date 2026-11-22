@@ -17,7 +17,7 @@ menu () {
 mike () {
     case $1 in
         t)
-            pamixer --default-source -t
+            pamixer --default-source --toggle-mute
             ;;
     esac
 
@@ -44,13 +44,13 @@ reborn () {
 volume () {
     case $1 in
         t)
-            pamixer -t
+            pamixer --toggle-mute
             ;;
         d)
-            pamixer -d "${2:-10}" --allow-boost --set-limit=150
+            pamixer --decrease "${2:-10}" --allow-boost --set-limit=150
             ;;
         i)
-            pamixer -i "${2:-10}" --allow-boost --set-limit=150
+            pamixer --increase "${2:-10}" --allow-boost --set-limit=150
             ;;
     esac
 
