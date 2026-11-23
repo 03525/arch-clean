@@ -29,7 +29,7 @@ edge=top
 layer=overlay
 
 # Set the font to use.
-font=JetBrains Mono NL 10
+font=JetBrains Mono NL Bold 10
 
 [error]
 # The background color for swaynag.
