@@ -41,7 +41,7 @@ EXEC 38;5;202
 MULTIHARDLINK 38;5;216
 
 # Specifies the color used for an other-writable directory without the executable attribute set.
-OTHER_WRITABLE 38;5;220;100
+OTHER_WRITABLE 38;5;220;100;1
 
 # Specifies the color used for a file with the set-group-ID attribute set.
 SETGID 38;5;220;100
@@ -53,7 +53,7 @@ SETUID 38;5;220;100
 STICKY 38;5;220;100
 
 # Specifies the color used for an other-writable directory with the executable attribute set.
-STICKY_OTHER_WRITABLE 38;5;220;100
+STICKY_OTHER_WRITABLE 38;5;220;100;1
 
 # 00D700
 *.7z 38;5;40
