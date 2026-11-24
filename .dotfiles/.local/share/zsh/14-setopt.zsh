@@ -4,9 +4,6 @@ setopt ALWAYS_TO_END
 # Automatically list choices on an ambiguous completion.
 setopt AUTO_LIST
 
-# Make cd push the old directory onto the directory stack.
-setopt AUTO_PUSHD
-
 # Never print the working directory after a cd.
 setopt CD_SILENT
 
@@ -36,15 +33,6 @@ setopt PROMPT_CR
 
 # Attempt to preserve a partial line that would otherwise be covered up by the command prompt due to the PROMPT_CR option.
 setopt PROMPT_SP
-
-# If set, parameter expansion, command substitution and arithmetic expansion are performed in prompts.
-setopt PROMPT_SUBST
-
-# Don't push multiple copies of the same directory onto the directory stack.
-setopt PUSHD_IGNORE_DUPS
-
-# Exchanges the meanings of "+" and "-" when used with a number to specify a directory in the stack.
-setopt PUSHD_MINUS
 
 # This option both imports new commands from the history file, and also causes your typed commands to be appended to the history file.
 setopt SHARE_HISTORY
