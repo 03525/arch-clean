@@ -7,7 +7,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES=(
     [builtin]=fg=green
     [function]=fg=green
     [command]=fg=green
-    [precommand]=fg=yellow
+    [precommand]=fg=green
     [commandseparator]=none
     [hashed-command]=none
     [autodirectory]=underline
@@ -16,7 +16,7 @@ typeset -A ZSH_HIGHLIGHT_STYLES=(
     [path_prefix]=underline
     [path_prefix_pathseparator]=underline
     [globbing]=fg=blue
-    [history-expansion]=fg=blue
+    [history-expansion]=none
     [command-substitution]=none
     [command-substitution-unquoted]=none
     [command-substitution-quoted]=none
@@ -31,14 +31,14 @@ typeset -A ZSH_HIGHLIGHT_STYLES=(
     [back-quoted-argument]=none
     [back-quoted-argument-unclosed]=none
     [back-quoted-argument-delimiter]=fg=magenta
-    [single-quoted-argument]=fg=yellow
+    [single-quoted-argument]=none
     [single-quoted-argument-unclosed]=fg=red
-    [double-quoted-argument]=fg=yellow
+    [double-quoted-argument]=none
     [double-quoted-argument-unclosed]=fg=red
-    [dollar-quoted-argument]=fg=yellow
+    [dollar-quoted-argument]=none
     [dollar-quoted-argument-unclosed]=fg=red
     [rc-quote]=none
-    [dollar-double-quoted-argument]=none
+    [dollar-double-quoted-argument]=fg=blue
     [back-double-quoted-argument]=fg=cyan
     [back-dollar-quoted-argument]=fg=cyan
     [assign]=none
