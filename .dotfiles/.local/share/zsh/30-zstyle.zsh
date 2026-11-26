@@ -1,4 +1,4 @@
-if (( $(date +"%s") - $(date +"%s" -r "$ZDOTDIR"/.zcompdump 2> /dev/null || echo 0) > 86400 ))
+if (( ( $(date +"%s") - $(date +"%s" -r "$ZDOTDIR"/.zcompdump 2> /dev/null || echo 0) ) > ( 12 * 60 * 60 ) ))
 then
     compinit
 else
