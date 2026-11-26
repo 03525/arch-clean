@@ -28,6 +28,7 @@ do
     . "$f"
 done; unset f
 
-# Note that zsh-syntax-highlighting must be the last plugin sourced.
-. /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-. /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+for f in zsh-autosuggestions zsh-syntax-highlighting
+do
+    . /usr/share/zsh/plugins/"$f"/"$f".plugin.zsh
+done; unset f
