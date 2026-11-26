@@ -36,6 +36,3 @@ export EDITOR="vim"
 
 # The name of the program used to display the manual page.
 export PAGER="less"
-
-# Options which are passed to less automatically.
-export LESS="-iR"
