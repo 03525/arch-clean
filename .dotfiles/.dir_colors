@@ -5,6 +5,7 @@ DOOR                    0
 FILE                    0
 MISSING                 0
 NORMAL                  0
+RESET                   0
 DIR                     38;5;30
 BLK                     38;5;68
 CHR                     38;5;113
