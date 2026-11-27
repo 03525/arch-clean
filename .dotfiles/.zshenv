@@ -34,5 +34,8 @@ export SAVEHIST=100000
 # Default editor to use.
 export EDITOR="vim"
 
+# Manual sections to search and in what order.
+export MANSECT="5:1:8:3:0:2:4:9:6:7"
+
 # The name of the program used to display the manual page.
 export PAGER="less"
