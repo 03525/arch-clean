@@ -12,6 +12,7 @@ iptables
 kanshi
 kolourpaint
 less
+libnotify
 libqalculate
 libreoffice-still
 mako
@@ -26,7 +27,6 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 openssh
-openvpn
 pamixer
 papirus-icon-theme
 pavucontrol
@@ -36,8 +36,6 @@ pipewire-jack
 pipewire-pulse
 polkit
 pyenv
-qt5-wayland
-qt5ct
 qt6-multimedia-ffmpeg
 qt6-wayland
 qt6ct
@@ -53,6 +51,7 @@ thunar-archive-plugin
 ttf-jetbrains-mono
 ttf-meslo-nerd
 ufw
+unzip
 vim
 wireless-regdb
 wireplumber
@@ -62,6 +61,7 @@ xarchiver
 xdg-desktop-portal
 xdg-desktop-portal-gtk
 xdg-desktop-portal-wlr
+zip
 zsh
 zsh-autosuggestions
 zsh-completions
