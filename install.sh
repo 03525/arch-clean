@@ -46,7 +46,7 @@ fi
 
 if [[ ! -f packages ]]
 then
-    echo "packages file not found."
+    echo "File 'packages' not found."
     exit 1
 else
     mapfile -t packages < packages
@@ -229,13 +229,13 @@ bootctl --esp-path=/mnt/boot install
 # Adding loaders
 cat << EOF > /mnt/boot/loader/entries/arch.conf
 title Arch Linux, with Linux $kernel
-sort-key Arch
+sort-key Arch Linux
 linux /vmlinuz-$kernel
 initrd /initramfs-$kernel.img
 options root=UUID=$(findmnt -n -o UUID -T /mnt) rw zswap.enabled=1 usbcore.autosuspend=-1
 EOF
 
-cp -r -- */ /mnt
+cp -R -- */ /mnt
 
 arch-chroot -S /mnt bash << 'EOF'
 # Set the Hardware Clock from the System Clock
